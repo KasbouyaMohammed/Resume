@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Mohammed KASBOUYA — Resume</title>
+    <style>
+      :root {
+        /* Custom palette (dark navy + teal + cream) */
+        --palette-1: #000B58; /* deep navy */
+        --palette-2: #003161; /* dark blue */
+        --palette-3: #006A67; /* teal */
+        --palette-4: #FDEB9E; /* soft cream */
+
+        /* Mapped theme tokens */
+        --bg: var(--palette-1);
+        --card: var(--palette-2);
+        --text: #E6F0FF; /* light text for contrast */
+        --muted: #BBD7FF; /* soft light for secondary text */
+        --accent: var(--palette-3);
+        --accent-strong: #27a39f;
+        --border: rgba(253, 235, 158, 0.22);
+        --chip-bg: rgba(0, 106, 103, 0.18);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html, body {
+        margin: 0;
+        padding: 0;
+        background: linear-gradient(180deg, var(--bg), rgba(0, 49, 97, 0.5) 60%, var(--bg));
+        color: var(--text);
+        font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+        line-height: 1.7;
+        font-size: 18px;
+      }
+
+      a { color: var(--accent); text-decoration: none; }
+      a:hover { color: var(--accent-strong); text-decoration: underline; }
+
+      html { scroll-behavior: smooth; }
+
+      .page {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 24px 20px 80px;
+      }
+
+      header {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        background: rgba(0, 11, 88, 0.7);
+        backdrop-filter: saturate(130%) blur(8px);
+        border-bottom: 1px solid rgba(253, 235, 158, 0.18);
+      }
+
+      .header-inner {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 18px 20px;
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 6px;
+      }
+
+      .name {
+        font-size: 38px;
+        font-weight: 700;
+        letter-spacing: 0.3px;
+      }
+
+      .contact {
+        color: var(--muted);
+        font-size: 18px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px 22px;
+        align-items: center;
+      }
+      .avatar {
+        width: 140px;
+        height: 140px;
+        border-radius: 999px;
+        object-fit: cover;
+        object-position: center;
+        background: linear-gradient(135deg, var(--palette-2), var(--palette-3));
+        border: 2px solid var(--border);
+        box-shadow: 0 2px 10px rgba(0,0,0,0.18);
+      }
+
+      .contact-item{ display:inline-flex; align-items:center; gap:8px; }
+      .icon{ width:18px; height:18px; display:inline-block; color: var(--accent); }
+
+      .hero {
+        padding: 48px 20px 10px;
+        text-align: left;
+      }
+      .hero-inner{
+        max-width: 1000px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+      .hero-title{ font-size: 40px; font-weight: 800; letter-spacing: .4px; }
+      .hero-tagline{ color: var(--accent-strong); font-size: 18px; }
+      .hero-actions{ display:flex; gap:12px; margin-top: 6px; }
+      .btn{
+        display:inline-flex; align-items:center; gap:8px; padding:10px 14px; border-radius:10px;
+        border:1px solid var(--border); background: var(--palette-3); color:#061223; font-weight:600;
+        transition: transform .18s ease, box-shadow .18s ease, background .18s ease, color .18s ease;
+      }
+      .btn:hover{ transform: translateY(-2px); box-shadow:0 8px 20px rgba(0,0,0,.2); background: var(--palette-4); color:#0b172a; }
+
+
+      .contact .sep { opacity: 0.5; }
+
+      .hero-spacer { height: 12px; }
+
+      .card {
+        background: radial-gradient(1200px 800px at 0% -20%, rgba(145, 196, 195, 0.20), transparent 40%),
+                    linear-gradient(180deg, rgba(0, 49, 97, 0.4), rgba(0, 49, 97, 0.15));
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        padding: 26px;
+        transition: transform .18s ease, box-shadow .18s ease;
+      }
+      .card:hover { transform: translateY(-4px); box-shadow: 0 12px 28px rgba(0,0,0,0.12); }
+      /* Removed inner max-width to allow full-width text */
+
+      h2 {
+        margin: 0 0 12px;
+        font-size: 22px;
+        font-weight: 700;
+        letter-spacing: 0.3px;
+        color: var(--text);
+      }
+
+      .section + .section { margin-top: 22px; }
+
+      .layout {
+        margin-top: 22px;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 26px;
+      }
+
+      .about p {
+        margin: 0;
+        color: var(--text);
+        opacity: 0.9;
+      }
+
+      .item {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 8px 12px;
+        padding: 18px 0;
+        border-bottom: 1px dashed rgba(148, 163, 184, 0.18);
+      }
+      .item:last-child { border-bottom: none; }
+
+      .item-title {
+        font-weight: 600;
+        color: var(--text);
+        font-size: 18px;
+      }
+
+      .item-meta {
+        color: var(--muted);
+        font-size: 14.5px;
+        text-align: right;
+        white-space: nowrap;
+      }
+
+      .item-desc {
+        grid-column: 1 / -1;
+        color: var(--muted);
+        margin-top: 6px;
+        font-size: 16px;
+      }
+      .item-desc ul {
+        margin: 8px 0 0 18px;
+        padding-left: 16px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .chip {
+        background: var(--chip-bg);
+        color: var(--muted);
+        border: 1px solid rgba(69, 104, 130, 0.35);
+        padding: 6px 10px;
+        border-radius: 999px;
+        font-size: 14px;
+        line-height: 1;
+      }
+
+      .skill-group { margin-bottom: 14px; }
+      .group-title {
+        font-weight: 600;
+        color: var(--text);
+        margin-bottom: 8px;
+        font-size: 16px;
+      }
+
+      .projects .item-title a { font-weight: 650; }
+
+      footer {
+        margin-top: 28px;
+        color: var(--muted);
+        font-size: 12px;
+        text-align: center;
+        opacity: 0.8;
+      }
+
+      @media (max-width: 860px) {
+        .layout {
+          grid-template-columns: 1fr;
+        }
+        .item-meta { text-align: left; }
+        .card { padding: 22px; }
+        .hero-title{ font-size: 32px; }
+        .hero-tagline{ font-size: 17px; }
+        .header-inner{ grid-template-columns: auto 1fr; row-gap: 8px; }
+        .avatar { width: 110px; height: 110px; }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="header-inner">
+        <img class="avatar" src="profile.png" alt="Profile photo of Mohammed KASBOUYA" onerror="this.style.background='linear-gradient(135deg, var(--palette-2), var(--palette-3))'; this.removeAttribute('src');" />
+        <div>
+          <div class="name">Mohammed KASBOUYA</div>
+          <div class="contact">
+            <span class="contact-item">
+              <svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 12.713l11.985-7.19A2 2 0 0022 3H2a2 2 0 00-1.985 2.523L12 12.713z"></path><path d="M12 14.887L0 7.7V19a2 2 0 002 2h20a2 2 0 002-2V7.7L12 14.887z"></path></svg>
+              <a href="mailto:kasbouyamohammed1@gmail.com">kasbouyamohammed1@gmail.com</a>
+            </span>
+            <span class="sep">|</span>
+            <span class="contact-item">
+              <svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2A19.86 19.86 0 013 4.18 2 2 0 015 2h3a2 2 0 012 1.72c.12.9.3 1.77.54 2.6a2 2 0 01-.45 2.11L9 9a16 16 0 006 6l.57-.57a2 2 0 012.11-.45c.83.24 1.7.42 2.6.54A2 2 0 0122 16.92z"/></svg>
+              <a href="tel:+21260000000">+212 60000000</a>
+            </span>
+            <span class="sep">|</span>
+            <span class="contact-item">
+              <svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19 0h-14C2.239 0 0 2.239 0 5v14c0 2.761 2.239 5 5 5h14c2.761 0 5-2.239 5-5V5c0-2.761-2.239-5-5-5zm-8 19H8v-7h3v7zm-1.5-8.091c-.966 0-1.75-.79-1.75-1.764S8.534 7.382 9.5 7.382s1.75.79 1.75 1.763S10.466 10.909 9.5 10.909zM20 19h-3v-3.604c0-2.172-2.5-2.006-2.5 0V19h-3v-7h3v1.021C15.02 11.375 20 11.165 20 15.396V19z"/></svg>
+              <a href="https://www.linkedin.com/in/mohammed-kasbouya/" target="_blank" rel="noopener">linkedin.com/in/mohammed-kasbouya</a>
+            </span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="page">
+      <section id="top" class="hero">
+        <div class="hero-inner">
+          <div class="hero-title">Data Science &amp; AI Specialist</div>
+          <div class="hero-tagline">Building intelligent systems • Teaching ML • Delivering business impact</div>
+          <div class="hero-actions">
+            <a href="#experience" class="btn">View Experience</a>
+            <a href="#projects" class="btn">See Projects</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section about card">
+        <h2>About Me</h2>
+        <p>
+          Data Scientist and PhD Researcher specializing in Machine Learning, NLP, and Generative AI, with 3+ years of hands‑on
+          experience across academia and industry. Lead Trainer at Orange Maroc, where I designed and delivered intensive Data &amp; AI
+          bootcamps, mentoring 150+ participants and enabling career readiness. Published researcher in chatbot adaptability and
+          emotional intelligence in large language models. Proven ability to bridge research and real‑world applications through
+          end‑to‑end project delivery, leadership, and technical expertise.
+        </p>
+      </section>
+
+      <div class="layout">
+        <section class="section skills card">
+          <h2>Skills &amp; Interests</h2>
+          <div class="skill-group">
+            <div class="group-title">Programming &amp; Data</div>
+            <div class="chips">
+              <span class="chip">Python</span>
+              <span class="chip">SQL</span>
+              <span class="chip">NoSQL (MongoDB)</span>
+              <span class="chip">Supabase</span>
+              <span class="chip">Git/GitHub</span>
+            </div>
+          </div>
+          <div class="skill-group">
+            <div class="group-title">Machine Learning &amp; AI</div>
+            <div class="chips">
+              <span class="chip">TensorFlow</span>
+              <span class="chip">PyTorch</span>
+              <span class="chip">NLP</span>
+              <span class="chip">Generative AI</span>
+              <span class="chip">OCR</span>
+              <span class="chip">Computer Vision</span>
+              <span class="chip">Time Series Forecasting</span>
+            </div>
+          </div>
+          <div class="skill-group">
+            <div class="group-title">Data Analysis &amp; Visualization</div>
+            <div class="chips">
+              <span class="chip">Pandas</span>
+              <span class="chip">NumPy</span>
+              <span class="chip">Scikit‑learn</span>
+              <span class="chip">Matplotlib</span>
+              <span class="chip">Power BI</span>
+              <span class="chip">Excel</span>
+            </div>
+          </div>
+          <div class="skill-group">
+            <div class="group-title">Soft Skills</div>
+            <div class="chips">
+              <span class="chip">Leadership</span>
+              <span class="chip">Mentorship</span>
+              <span class="chip">Technical Training</span>
+              <span class="chip">Simplifying AI for Non‑Technical Audiences</span>
+            </div>
+          </div>
+          <div class="skill-group">
+            <div class="group-title">Languages</div>
+            <div class="chips">
+              <span class="chip">Arabic (Native)</span>
+              <span class="chip">French (Professional)</span>
+              <span class="chip">English (Professional/Academic)</span>
+            </div>
+          </div>
+        </section>
+
+        <section id="experience" class="section experience card reveal">
+          <h2>Experience</h2>
+          <div class="item">
+            <div class="item-title">Lead Trainer — Data Science &amp; AI (Permanent Contract), Orange Maroc</div>
+            <div class="item-meta">Casablanca, Morocco · Jan 2025 — Present</div>
+            <div class="item-desc">
+              <ul>
+                <li>Designed, delivered, and supervised 10+ workshops and trainings in Data Science, Machine Learning, and AI, engaging 200+ participants.</li>
+                <li>Coordinated a 2‑month Data &amp; AI bootcamp with 25+ participants; achieved a 90% project completion rate.</li>
+                <li>Adapted training content to industry needs, ensuring participants gained job‑ready skills.</li>
+                <li>Mentored 20+ students on data‑driven projects; several achieved job placements or conference presentations.</li>
+                <li>Partnered with universities and clubs to launch 3+ innovation initiatives enhancing skills and employability.</li>
+              </ul>
+            </div>
+          </div>
+          <div class="item">
+            <div class="item-title">Club Coordinator — Data &amp; AI (Interim), Orange Maroc</div>
+            <div class="item-meta">Casablanca, Morocco · Nov 2022 — Dec 2025</div>
+            <div class="item-desc">
+              <ul>
+                <li>Delivered 30+ technical workshops on Python, Machine Learning, Data Analysis, and Generative AI, reaching 400+ participants with hands‑on learning.</li>
+                <li>Guided interns and students in project implementation; mentored 10+ MSc/BSc projects.</li>
+                <li>Contributed to community programs promoting digital inclusion and career readiness.</li>
+              </ul>
+            </div>
+          </div>
+          <div class="item">
+            <div class="item-title">Data Scientist Intern (Final Year Master’s Project), Checkinfo</div>
+            <div class="item-meta">Casablanca, Morocco · Mar 2022 — Aug 2022</div>
+            <div class="item-desc">
+              <ul>
+                <li>Developed an OCR system using Deep Learning to extract information from bank checks &amp; IDs.</li>
+                <li>Optimized validation pipelines with NoSQL, reducing data retrieval time by 30%.</li>
+                <li>Improved fraud detection accuracy through integration into financial verification workflows.</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section id="education" class="section education card reveal">
+          <h2>Education</h2>
+          <div class="item">
+            <div class="item-title">Ph.D. in Computer Science (In Progress) — Hassan II University</div>
+            <div class="item-meta">Casablanca, Morocco · 2022 — Present</div>
+            <div class="item-desc">
+              <strong>Research focus:</strong> Deep Learning &amp; NLP for chatbot adaptability and emotional intelligence in LLMs.
+              <ul>
+                <li>Chatbots in Education (ESRI-AI 2023)</li>
+                <li>Empathy in Banking Chatbots (TIM’24 2024)</li>
+                <li>Emotional Intelligence in LLMs (IC3CS 2025)</li>
+                <li>Fine-Tuning Methods for Emotional Intelligence in LLMs (ISDA 2025, Springer)</li>
+              </ul>
+            </div>
+          </div>
+          <div class="item">
+            <div class="item-title">Master’s in Big Data &amp; Data Science — Hassan II University</div>
+            <div class="item-meta">Casablanca, Morocco · 2020 — 2022</div>
+            <div class="item-desc">
+              <strong>Thesis:</strong> OCR System for Financial Document Verification (Checkinfo).
+            </div>
+          </div>
+          <div class="item">
+            <div class="item-title">Bachelor’s in Database, Mathematics &amp; Computer Science — Hassan II University</div>
+            <div class="item-meta">Casablanca, Morocco · 2017 — 2020</div>
+            <div class="item-desc">
+              <strong>Thesis:</strong> Smart Campus Attendance System — Developed an IoT‑based student attendance tracking solution using Arduino and Android integration, automating presence detection via NFC/Bluetooth smart cards.
+            </div>
+          </div>
+        </section>
+
+        <section id="projects" class="section projects card reveal">
+          <h2>Project Experience</h2>
+          <div class="item">
+            <div class="item-title">OCR System for Document Verification — Checkinfo</div>
+            <div class="item-meta">Casablanca, Morocco · Mar 2022 — Aug 2022</div>
+            <div class="item-desc">
+              <ul>
+                <li>Built an OCR system with deep learning to extract and validate information from checks and ID cards.</li>
+                <li>Integrated a NoSQL database to optimize data storage and retrieval.</li>
+                <li>Applied machine learning and computer vision for financial document verification.</li>
+              </ul>
+            </div>
+          </div>
+          <div class="item">
+            <div class="item-title">Cyberattack Detection in Real Time — Hassan II University</div>
+            <div class="item-meta">Casablanca, Morocco · Dec 2020 — Feb 2021</div>
+            <div class="item-desc">
+              <ul>
+                <li>Designed a real‑time machine learning pipeline for cyberattack detection using behavioral analysis.</li>
+                <li>Improved resilience by optimizing resource allocation algorithms, reducing system downtime by 20%.</li>
+                <li>Led a team of 8, ensuring on‑time project delivery and effective collaboration.</li>
+              </ul>
+            </div>
+          </div>
+          <div class="item">
+            <div class="item-title">Demand Forecasting with Deep Learning — Hassan II University</div>
+            <div class="item-meta">Casablanca, Morocco · Jul 2021 — Sep 2021</div>
+            <div class="item-desc">
+              <ul>
+                <li>Built an LSTM forecasting model for pharmaceutical supply chain, achieving 90% accuracy.</li>
+                <li>Reduced forecasting error rate by 5%, enabling more precise inventory planning.</li>
+                <li>Published results in 2022 (International Journal of Intelligent Engineering &amp; Systems).</li>
+              </ul>
+            </div>
+          </div>
+          <div class="item">
+            <div class="item-title">Distributed Data Processing with Apache Flink &amp; Hadoop — Hassan II University</div>
+            <div class="item-meta">Casablanca, Morocco · Nov 2020 — Jan 2021</div>
+            <div class="item-desc">
+              <ul>
+                <li>Deployed a distributed big data environment using Apache Flink &amp; Hadoop for real‑time and batch processing.</li>
+                <li>Increased data throughput efficiency under high workloads by 15% through optimized algorithms.</li>
+                <li>Strengthened expertise in data pipeline development, data wrangling, and scalable architectures.</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <footer>
+        © <span id="year"></span> Mohammed KASBOUYA · Resume
+      </footer>
+    </div>
+
+    <script>
+      document.getElementById('year').textContent = new Date().getFullYear();
+
+      const observer = new IntersectionObserver((entries)=>{
+        entries.forEach(entry=>{
+          if(entry.isIntersecting){ entry.target.classList.add('in'); }
+        });
+      }, { threshold: 0.12 });
+      document.querySelectorAll('.reveal').forEach(el=>{
+        el.style.opacity = 0;
+        el.style.transform = 'translateY(16px)';
+        el.style.transition = 'opacity .5s ease, transform .5s ease';
+        observer.observe(el);
+      });
+      const style = document.createElement('style');
+      style.textContent = '.reveal.in{opacity:1 !important; transform: translateY(0) !important;}';
+      document.head.appendChild(style);
+    </script>
+  </body>
+  </html>
+
+
